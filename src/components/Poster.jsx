@@ -1,61 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 const Poster = ({ movies }) => {
-  const [loading, setLoading] = useState(true);
   if (movies !== undefined) {
     return (
-      <div className="container grid w-full grid-cols-1 gap-10 mx-auto mt-2 lg:grid-cols-4 lg:grid SourceSansPro">
+      <div className="min-h-screen grid place-items-center font-mono bg-gray-900 gap-9">
         {movies.map((movie) => (
-          <div className="flex max-w-sm w-full  shadow-md rounded-lg overflow-hidden mx-auto" key={movie.id}>
-            <div className="w-2"></div>
-
-            <div className="overflow-hidden rounded-xl relative transform hover:-translate-y-2 transition ease-in-out duration-500 shadow-lg hover:shadow-2xl movie-item text-white movie-card">
-              <div className="absolute inset-0 z-10 transition duration-300 ease-in-out bg-gradient-to-t from-black via-gray-900 to-transparent"></div>
-              <div className="relative cursor-pointer group z-10 px-10 pt-10 space-y-6">
-                <div className="align-self-end w-full">
-                  <div className="h-32"></div>
-                  <div className="space-y-6 detail_info">
-                    <div className="flex flex-col space-y-2 inner">
-                      <h3 className="text-2xl font-bold text-white" data-unsp-sanitized="clean">
-                        {movie.title}
-                      </h3>
-                      {/* <div className="mb-0 text-lg text-gray-400">Beyond fear, destiny awaits.</div> */}
-                    </div>
-                    <div className="flex flex-row justify-between datos">
-                      <div className="flex flex-col datos_col">
-                        <div className="popularity">{movie.popularity}</div>
-                        <div className="text-sm text-gray-400">Popularity:</div>
-                      </div>
-                      <div className="flex flex-col datos_col">
-                        <div className="release">{movie.release_date}</div>
-                        <div className="text-sm text-gray-400">Release date:</div>
-                      </div>
-                      <div className="flex flex-col datos_col">
-                        <div className="release">Language:</div>
-                        <div className="text-sm text-gray-400">{movie.original_language}:</div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col overview">
-                      <div className="flex flex-col"></div>
-                      <div className="text-xs text-gray-400 mb-2">Overview:</div>
-                      <p className="text-xl text-gray-100 mb-6">{movie.overview}</p>
-                    </div>
-                  </div>
-                </div>
+          <div className="rounded-md bg-gray-800 shadow-lg" key={movie.id}>
+            <div className="md:flex px-4 leading-none max-w-4xl">
+              <div className="flex-none ">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt="pic"
+                  className="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300"
+                />
               </div>
-              <img
-                className="absolute inset-0 transform w-full -translate-y-4"
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                style={{ filter: "grayscale(0)" }}
-              />
-              <div className="flex flex-row relative pb-10 space-x-4 z-10"></div>
+              <div className="flex-col text-gray-300">
+                <p className="pt-4 text-2xl font-bold">
+                  {movie.title} ({new Date(movie.release_date).getFullYear()})
+                </p>
+                <hr className="hr-text" data-content={movie.tagline} />
+                <div className="text-md flex justify-between px-4 my-2">
+                  <span className="font-bold">{movie.runtime}m</span>
+                  <span className="font-bold" />
+                </div>
+                <p className="hidden md:block px-4 my-4 text-sm text-left">{movie.overview} </p>
+                <p className="flex text-md px-4 my-2">
+                  Rating: {movie.vote_average}
+                  <span className="font-bold px-2">|</span>
+                  Status: {movie.status}
+                </p>
+                {movie.genres.map((genre) => (
+                  <div className="text-xs inline-grid" key={genre.id}>
+                    <button
+                      type="button"
+                      className="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline"
+                    >
+                      {genre.name}
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ))}
       </div>
     );
+  } else {
+    return <div>Loading...</div>;
   }
-
-  return <div>Loading...</div>;
 };
-
 export default Poster;
