@@ -2,7 +2,7 @@ import React from "react";
 const Poster = ({ movies }) => {
   if (movies !== undefined) {
     return (
-      <div className="min-h-screen grid place-items-center font-mono bg-gray-900 gap-9">
+      <div className="min-h-screen grid place-items-center font-mono mt-10 bg-gray-900 gap-9">
         {movies.map((movie) => (
           <div className="rounded-md bg-gray-800 shadow-lg" key={movie.id}>
             <div className="md:flex px-4 leading-none max-w-4xl">

@@ -4,7 +4,7 @@ A Movie Finder App built with React
 
 ## Screenshots
 
-![App Screenshot](https://i.ibb.co/jhgK8Lj/Screenshot-2021-11-15-200451.png)
+![App Screenshot](https://i.ibb.co/bQYB9NV/Screenshot-2021-11-16-at-12-44-30-am.png)
 
 ## Installation
 
